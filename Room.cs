@@ -81,5 +81,10 @@ namespace AdvGame
         {
             return this.description;
         }
+
+        public string GetName()
+        {
+            return this.name;
+        }
     }
 }
