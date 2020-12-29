@@ -86,5 +86,39 @@ namespace AdvGame
         {
             return this.name;
         }
+
+        public Room GetRoomDirection(char direction)
+        {
+            switch (direction)
+            {
+                case 'n':
+                    if(this.n_to != null)
+                    {
+                        return this.n_to;
+                    }
+                    return null;
+                case 'e':
+                    if(this.e_to != null)
+                    {
+                        return this.e_to;
+                    }
+                    return null;
+                case 's':
+                    if(this.s_to != null)
+                    {
+                        return this.s_to;
+                    }
+                    return null;
+                case 'w':
+                    if(this.e_to != null)
+                    {
+                        return this.e_to;
+                    }
+                    return null;
+                    
+                default:
+                    return null;
+            }
+        }
     }
 }
