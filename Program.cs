@@ -11,7 +11,7 @@ namespace AdvGame
             Dictionary<string, Room> rooms = new Dictionary<string, Room>();
             rooms.Add("outside", new Room("Outside Cave Entrance", "North of you the cave mount beckons"));
             rooms.Add("foyer", new Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east."));
-            rooms.Add("Grand Overlook", new Room("Grand Overlook", @"A steep cliff appears before you, falling
+            rooms.Add("overlook", new Room("Grand Overlook", @"A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."));
             rooms.Add("narrow", new Room("Narrow", "The narrow passage bends here from west to north. The smell of gold permeates the air."));
@@ -20,16 +20,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."));
 
             // link the rooms together
-            /*
-                * room['outside'].n_to = room['foyer']
-                * room['foyer'].s_to = room['outside']
-                * room['foyer'].n_to = room['overlook']
-                * room['foyer'].e_to = room['narrow']
-                * room['overlook'].s_to = room['foyer']
-                * room['narrow'].w_to = room['foyer']
-                * room['narrow'].n_to = room['treasure']
-                room['treasure'].s_to = room['narrow']
-            */
             rooms["outside"].SetN_To(rooms["foyer"]);
             rooms["foyer"].SetS_To(rooms["outside"]);
             rooms["foyer"].SetN_To(rooms["overlook"]);
@@ -38,6 +28,46 @@ earlier adventurers. The only exit is to the south."));
             rooms["narrow"].SetW_To(rooms["foyer"]);
             rooms["narrow"].SetN_To(rooms["treasure"]);
             rooms["treasure"].SetS_To(rooms["narrow"]);
+
+            // Read in a player name
+            Console.WriteLine("What is your name?");
+            var playerName = Console.ReadLine();
+            
+            // Create player instance
+            var player = new Player(playerName, rooms["outside"]);
+
+            // A table for looking up directions a player can move in the game
+            char[] directions = new char[] {'n', 's', 'e', 'w'};
+            while(true)
+            {
+                Console.WriteLine(player.GetCurrRoom());
+                Console.WriteLine("What direction do you want to go?");
+                var command = Console.ReadLine()[0];
+
+                if(Array.IndexOf(directions, command) != -1)
+                {
+                    player.Travel(command);
+                } 
+                else if(command == 'q')
+                {
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    Console.WriteLine("Sorry I dont understand that command");
+                }
+            }
+
+        }
+
+        static void PlayerOptions()
+        {
+            Console.WriteLine(@"
+=================================options====================================
+q: quit
+n/s/e/w: Move north, south, east or west to the next room
+============================================================================
+            ");
         }
     }
 }
