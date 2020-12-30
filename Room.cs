@@ -17,108 +17,52 @@ namespace AdvGame
         }
 
         // getters and setters (nieve setup)
-        // TODO: implament the C# way of generating getters and setters
-
-        public Room GetN_To() 
+        public Room N_To 
         {
-            if (n_to != null){
-                return n_to;
-            }
-            
-            return null;
+            get
+            {
+                return this.n_to;
+            } 
+            set
+            {
+                this.n_to = value;
+            } 
         }
-
-        public void SetN_To(Room room){
-            this.n_to = room;
-        }
-
-        public Room GetS_To()
+        public Room S_To 
         {
-            if(s_to != null)
+            get
             {
                 return this.s_to;
-            } 
-
-            return null;
+            }
+            set
+            {
+                this.s_to = value;
+            }
         }
 
-        public void SetS_To(Room room)
+        public Room E_To
         {
-            this.s_to = room;
-        }
-
-        public Room GetE_To()
-        {
-            if(e_to != null)
+            get
             {
                 return this.e_to;
             }
-
-            return null;
+            set
+            {
+                this.e_to = value;
+            }
         }
 
-        public void SetE_To(Room room)
+        public Room W_To
         {
-            this.e_to = room;
-        }
-
-        public Room GetW_To()
-        {
-            if(w_to != null)
+            get
             {
                 return this.w_to;
             }
-
-            return null;
-        }
-
-        public void SetW_To(Room room)
-        {
-            this.w_to = room;
-        }
-
-        public string GetDesc()
-        {
-            return this.description;
-        }
-
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        public Room GetRoomDirection(char direction)
-        {
-            switch (direction)
+            set
             {
-                case 'n':
-                    if(this.n_to != null)
-                    {
-                        return this.n_to;
-                    }
-                    return null;
-                case 'e':
-                    if(this.e_to != null)
-                    {
-                        return this.e_to;
-                    }
-                    return null;
-                case 's':
-                    if(this.s_to != null)
-                    {
-                        return this.s_to;
-                    }
-                    return null;
-                case 'w':
-                    if(this.e_to != null)
-                    {
-                        return this.e_to;
-                    }
-                    return null;
-                    
-                default:
-                    return null;
+                this.w_to = value;
             }
         }
+
     }
 }
