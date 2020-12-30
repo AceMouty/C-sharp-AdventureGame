@@ -16,7 +16,21 @@ namespace AdvGame
             this.description = description;
         }
 
-        // getters and setters (nieve setup)
+        // accessors
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+        }
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+        }
         public Room N_To 
         {
             get
@@ -61,6 +75,39 @@ namespace AdvGame
             set
             {
                 this.w_to = value;
+            }
+        }
+
+        public Room GetRoomByDirection(char direction)
+        {
+            switch(direction)
+            {
+                case 'n':
+                    if(this.n_to != null)
+                    {
+                        return this.N_To;
+                    }
+                    return null;
+                case 'e':
+                    if(this.e_to != null)
+                    {
+                        return this.E_To;
+                    }
+                    return null;
+                case 's':
+                    if(this.s_to != null)
+                    {
+                        return this.S_To;
+                    }
+                    return null;
+                case 'w':
+                    if(this.w_to != null)
+                    {
+                        return this.W_To;
+                    }
+                    return null;
+                default:
+                    return null;
             }
         }
 
