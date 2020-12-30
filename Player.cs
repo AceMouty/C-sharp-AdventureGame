@@ -3,35 +3,34 @@ namespace AdvGame
 {
     public class Player
     {
-        private readonly string Name;
-        private Room CurrRoom;
+        private readonly string name;
+        private Room currRoom;
         public Player(string name, Room room)
         {
-            this.Name = name;
-            this.CurrRoom = room;
+            this.name = name;
+            this.currRoom = room;
         }
 
-        // getters and setters
-        // TODO: Implament C# getters and setters
-
-        public string GetCurrRoom()
+        // accessors
+        public string Name
         {
-            return this.CurrRoom.GetDesc();
+            get { return this.name; }
         }
 
-        public void SetCurrRoom(Room newRoom)
+        public Room CurrRoom
         {
-            this.CurrRoom = newRoom;
+            get { return this.currRoom; }
+            set {this.currRoom = value; }
         }
 
-        public string GetPlayerName()
+        public string GetRoomDesc()
         {
-            return this.Name;
+            return this.CurrRoom.Description;
         }
 
         public void Travel(char direction)
         {
-            var currentRoom = this.CurrRoom.GetRoomDirection(direction);
+            var currentRoom = this.CurrRoom.GetRoomByDirection(direction);
 
             if(currentRoom != null)
             {

@@ -20,14 +20,14 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."));
 
             // link the rooms together
-            rooms["outside"].SetN_To(rooms["foyer"]);
-            rooms["foyer"].SetS_To(rooms["outside"]);
-            rooms["foyer"].SetN_To(rooms["overlook"]);
-            rooms["foyer"].SetE_To(rooms["narrow"]);
-            rooms["overlook"].SetS_To(rooms["foyer"]);
-            rooms["narrow"].SetW_To(rooms["foyer"]);
-            rooms["narrow"].SetN_To(rooms["treasure"]);
-            rooms["treasure"].SetS_To(rooms["narrow"]);
+            rooms["outside"].N_To = rooms["foyer"];
+            rooms["foyer"].S_To = rooms["outside"];
+            rooms["foyer"].N_To = rooms["overlook"];
+            rooms["foyer"].E_To = rooms["narrow"];
+            rooms["overlook"].S_To = rooms["foyer"];
+            rooms["narrow"].W_To = rooms["foyer"];
+            rooms["narrow"].N_To = rooms["treasure"];
+            rooms["treasure"].S_To = rooms["narrow"];
 
             // Read in a player name
             Console.WriteLine("What is your name?");
@@ -40,13 +40,18 @@ earlier adventurers. The only exit is to the south."));
             char[] directions = new char[] {'n', 's', 'e', 'w'};
             while(true)
             {
-                Console.WriteLine(player.GetCurrRoom());
+                Console.WriteLine(player.GetRoomDesc());
+                PlayerOptions();
                 Console.WriteLine("What direction do you want to go?");
                 var command = Console.ReadLine()[0];
 
                 if(Array.IndexOf(directions, command) != -1)
                 {
                     player.Travel(command);
+                    for(var count = 0; count < 100; count++)
+                    {
+                        System.Console.WriteLine();
+                    }
                 } 
                 else if(command == 'q')
                 {
@@ -54,7 +59,12 @@ earlier adventurers. The only exit is to the south."));
                 }
                 else
                 {
+                    for(var i = 0; i < 100; i++)
+                    {
+                        System.Console.WriteLine();
+                    }
                     Console.WriteLine("Sorry I dont understand that command");
+                    System.Console.WriteLine();
                 }
             }
 
@@ -63,7 +73,7 @@ earlier adventurers. The only exit is to the south."));
         static void PlayerOptions()
         {
             Console.WriteLine(@"
-=================================options====================================
+================================ options ===================================
 q: quit
 n/s/e/w: Move north, south, east or west to the next room
 ============================================================================

@@ -83,29 +83,13 @@ namespace AdvGame
             switch(direction)
             {
                 case 'n':
-                    if(this.n_to != null)
-                    {
-                        return this.N_To;
-                    }
-                    return null;
+                    return this.N_To;
                 case 'e':
-                    if(this.e_to != null)
-                    {
-                        return this.E_To;
-                    }
-                    return null;
+                   return this.E_To;
                 case 's':
-                    if(this.s_to != null)
-                    {
-                        return this.S_To;
-                    }
-                    return null;
+                    return this.S_To;
                 case 'w':
-                    if(this.w_to != null)
-                    {
-                        return this.W_To;
-                    }
-                    return null;
+                    return this.W_To;
                 default:
                     return null;
             }
