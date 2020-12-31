@@ -38,35 +38,49 @@ earlier adventurers. The only exit is to the south."));
 
             // A table for looking up directions a player can move in the game
             char[] directions = new char[] {'n', 's', 'e', 'w'};
+
+            // Start game loop
             while(true)
             {
                 Console.WriteLine(player.GetRoomDesc());
                 PlayerOptions();
                 Console.WriteLine("What direction do you want to go?");
-                var command = Console.ReadLine()[0];
-
-                if(Array.IndexOf(directions, command) != -1)
+                
+                var commandBuffer = Console.ReadLine().ToLower();
+                char command;
+                
+                // Check if the command passed atleast has a lenght of 1, if not continually prompt the user
+                while(commandBuffer.Length != 1)
                 {
+                    Console.WriteLine("What direction do you want to go?");
+                    commandBuffer = Console.ReadLine().ToLower();
+                }
+
+                // assign command to first char stored in command buffer
+                command = commandBuffer[0];
+
+                // See if the provided command is a valid direction to move OR if the user chose to quit
+                if(Array.IndexOf(directions, command) != -1)
+                {   
+                    // If direction provided is valid then attempt to move
                     player.Travel(command);
-                    for(var count = 0; count < 100; count++)
-                    {
-                        System.Console.WriteLine();
-                    }
+                    Console.Clear();
                 } 
+                // Kill game loop if the user enters q
                 else if(command == 'q')
                 {
-                    Environment.Exit(1);
+                    break;
                 }
+                // Let the user know they have passed a in valid command
                 else
                 {
-                    for(var i = 0; i < 100; i++)
-                    {
-                        System.Console.WriteLine();
-                    }
+                    Console.Clear();
                     Console.WriteLine("Sorry I dont understand that command");
                     System.Console.WriteLine();
                 }
             }
+
+            Environment.Exit(1);
 
         }
 
